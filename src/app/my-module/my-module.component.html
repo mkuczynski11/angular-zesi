@@ -1,0 +1,27 @@
+<h1>Web Application Starter Project</h1>
+
+<table align="center">
+    <tr>
+        <td colspan="2" style="font-weight:bold;">Please enter your name:</td>
+    </tr>
+    <tr>
+        <td>
+            <input id="name" [autofocus]="focusOn === 'send'" type="text" placeholder="Enter your name" [formControl]="name"/>
+        </td>
+        <td>
+            <button [disabled]="!formEnabled" class="sendButton" (click)="sendNameToServer()">Send</button>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="color:red;">
+            <label *ngIf="inputError !== ''">{{inputError}}</label>
+        </td>
+    </tr>
+</table>
+<div align="center" class="dialogVPanel" id="dialog" [hidden]="!dialogEnabled">
+    <b>Sending name to the server: {{name.value}}</b>
+    <p id="dialogTitle">{{dialogTitle}}</p>
+    <br><b>Server replies:</b>
+    <p [ngClass]="{'serverResponseLabelError': isServerResponseError}" id="dialogContent">{{serverResponse}}</p>
+    <button [autofocus]="focusOn === 'close'" id="closeButton" (click)="closeDialog()">Close</button>
+</div>
